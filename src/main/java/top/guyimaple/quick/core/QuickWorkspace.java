@@ -2,8 +2,8 @@ package top.guyimaple.quick.core;
 
 import lombok.Getter;
 import top.guyimaple.quick.common.QuickService;
+import top.guyimaple.quick.common.current.CurrentContext;
 import top.guyimaple.quick.common.entry.Project;
-import top.guyimaple.quick.common.enums.ProjectType;
 import top.guyimaple.quick.common.writer.ProjectFileWriter;
 import top.guyimaple.quick.core.repository.ServiceRepository;
 
@@ -22,8 +22,9 @@ public class QuickWorkspace {
  private final Project project;
  private final ServiceRepository serviceRepository;
  private final Map<String, QuickService> services = new HashMap<>();
- public QuickWorkspace(String base, String web, String service, ProjectFileWriter writer, ServiceRepository serviceRepository) {
-  this.project = new Project(base, web, service, writer);
+ public QuickWorkspace(String name, String base, String web, String service, ProjectFileWriter writer, ServiceRepository serviceRepository) {
+  this.project = new Project(name, base, web, service, writer, new CurrentContext());
+  this.project.getContext().setProject(this.project);
   this.serviceRepository = serviceRepository;
  }
 

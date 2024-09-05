@@ -15,6 +15,7 @@ public class Test {
 
     public static void main(String[] args) throws MalformedURLException {
         QuickWorkspace workspace = new QuickWorkspace(
+                "quick-test",
                 "../test",
                 "web",
                 "service",
